@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="it" data-exp="static">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <!--seo-->
+    <script>
+      /* Decide PRIMA del primo paint: esperienza scroll-driven ("scrub") o versione statica.
+         Statica per: prefers-reduced-motion, Save-Data, rete 2G, dispositivi molto limitati.
+         Override per test: ?exp=scrub | ?exp=static */
+      (function (d) {
+        var q = location.search.match(/[?&]exp=(scrub|static)/);
+        var c = navigator.connection || {};
+        var low =
+          matchMedia('(prefers-reduced-motion: reduce)').matches ||
+          c.saveData === true ||
+          /(^|-)2g$/.test(c.effectiveType || '') ||
+          (navigator.deviceMemory && navigator.deviceMemory <= 2) ||
+          (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2);
+        d.setAttribute('data-exp', q ? q[1] : low ? 'static' : 'scrub');
+        d.classList.add('js');
+      })(document.documentElement);
+    </script>
+    <link rel="preload" href="/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/instrument-serif-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/images/poster-start.webp" as="image" type="image/webp" fetchpriority="high">
+    <link rel="stylesheet" href="/src/styles/main.css">
+  </head>
+  <body>
+    <a class="skip" href="#main">Vai al contenuto</a>
+    <!--app-->
+    <noscript><style>[data-reveal]{opacity:1!important;transform:none!important;clip-path:none!important}.ln>span{transform:none!important}</style></noscript>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

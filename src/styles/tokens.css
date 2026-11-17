@@ -1,0 +1,67 @@
+@font-face {
+  font-family: 'Archivo';
+  src: url('/fonts/archivo-latin-wdth-normal.woff2') format('woff2');
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Instrument Serif';
+  src: url('/fonts/instrument-serif-latin-400-italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Instrument Serif';
+  src: url('/fonts/instrument-serif-latin-400-normal.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Palette (sovrascritta da src/config/site.ts tramite <style id="theme">) */
+  --black: #000000;
+  --black-2: #101010;
+  --white: #ffffff;
+  --warm: #f5f2ec;
+  --bbq: #a52a20;
+  --caramel: #d6a15d;
+
+  --accent: var(--white);
+  --hair: rgba(245, 242, 236, 0.16);
+  --mute: rgba(245, 242, 236, 0.62);
+
+  --f-text: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --f-serif: 'Instrument Serif', 'Times New Roman', serif;
+
+  --gut: clamp(20px, 4.2vw, 72px);
+  --hdr-h: 72px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-io: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* Tipografia display: condensata, nera, maiuscola. */
+.display,
+.hero__title,
+.ing__name,
+.sauce__title,
+.finale__title,
+.phil__title,
+.menu__title,
+.foto__title,
+.cta__title,
+.prod__name,
+.pd__name,
+.logo__text,
+.ftr__giant {
+  font-family: var(--f-text);
+  font-stretch: 62%;
+  font-weight: 860;
+  text-transform: uppercase;
+  line-height: 0.86;
+  letter-spacing: -0.005em;
+  font-kerning: normal;
+}
