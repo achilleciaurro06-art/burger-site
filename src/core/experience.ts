@@ -91,7 +91,7 @@ export function initExperience(): void {
     videoT = lerp(prev.t, ch.to.t, u);
     if (ready && !video.seeking && Math.abs(video.currentTime - videoT) > 1 / 50) video.currentTime = videoT;
 
-    cam.style.setProperty('--plate', range(videoT, 4.9, 6.2).toFixed(3));
+    cam.style.setProperty('--plate', range(videoT, 4.7, 5.0).toFixed(3));
 
     // Livelli editoriali (entrata/uscita legate allo scroll)
     CHAPTERS.forEach((c, j) => {

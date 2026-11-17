@@ -34,3 +34,7 @@ Smartphone/viewport strette: video 720p, layout con testo in basso, macro-foto n
 - `orderUrl` vuoto: "ORDINA" porta al footer/contatti. Contatti, indirizzo, orari, social: "Da configurare".
 - `public/privacy.html` e `cookie.html`: segnaposto.
 - Se cambi il video: ricalibra `t` e `fy` in `timeline.ts`.
+
+## Foto reali e piatto
+- Le foto fornite stanno in `assets-src/photos/*.jpg` (non tracciate in git) e vengono convertite da `npm run media` in `public/images/photo-*.webp`.
+- Il video è tagliato a 5.45 s: finisce sull'hamburger ricomposto con la salsa. Il piatto bianco (che nel video esce dai bordi del frame) non viene usato.

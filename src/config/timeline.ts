@@ -16,7 +16,7 @@
  * Mappa del video attuale (7.92 s, 24 fps):
  *   0.0–1.0  hamburger intero che cade e ruota      1.0–1.7  si apre
  *   1.7–2.4  ingredienti sospesi                    2.0–4.4  colata di salsa
- *   3.9–5.0  si ricompone                           5.0–7.9  atterra sul piatto bianco
+ *   3.9–5.4  si ricompone (il video è tagliato a 5.46 s: il piatto che entra dal basso non viene usato)
  */
 export interface Cam {
   t: number;
@@ -58,12 +58,10 @@ export const CHAPTERS: Chapter[] = [
   { id: 'sauce', layer: 'ing-sauce', vh: 42, to: cam(3.6, 1.35, 1.1, 0.2), ...ING },
   // Momento salsa: la colata attraversa l'hamburger.
   { id: 'sauce-moment', layer: 'sauce-moment', vh: 60, to: cam(4.35, 1.12, 1, 0.42, 0.5, 0.36), move: 0.6, in: [0.08, 0.3], out: [0.86, 1] },
-  // Ricomposizione: nessun testo, solo prodotto.
-  { id: 'recompose', layer: null, vh: 45, to: cam(5.3, 1, 1, 0.5, 0.5, 0.5), move: 0.7, in: [0, 0], out: null },
-  // Atterraggio sul piatto bianco.
-  { id: 'land', layer: null, vh: 60, to: cam(7.6, 1.3, 1.04, 0.6, 0.5, 0.33), move: 0.85, in: [0, 0], out: null },
+  // Ricomposizione: nessun testo, solo prodotto. Il video finisce sull'hamburger completo con la salsa.
+  { id: 'recompose', layer: null, vh: 60, to: cam(5.4, 1.2, 1.02, 0.535, 0.5, 0.4), move: 0.75, in: [0, 0], out: null },
   // Pausa visiva + conclusione.
-  { id: 'finale', layer: 'finale', vh: 55, to: cam(7.9167, 1.3, 1.04, 0.6, 0.5, 0.33), move: 0.1, in: [0.4, 0.75], out: null },
+  { id: 'finale', layer: 'finale', vh: 60, to: cam(5.4583, 1.2, 1.02, 0.535, 0.5, 0.4), move: 0.1, in: [0.35, 0.7], out: null },
 ];
 
 export const TOTAL_VH = CHAPTERS.reduce((a, c) => a + c.vh, 0);

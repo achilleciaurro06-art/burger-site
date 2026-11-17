@@ -56,7 +56,7 @@ export const renderExperience = (): string => `
       </div>
 
       <div class="layer layer--finale" data-layer="finale" aria-labelledby="finale-t">
-        <figure class="static-only finale__still"${demoAttr(images.plated)}>${img(images.plated, { sizes: '(max-width: 820px) 100vw, 60vw' })}</figure>
+        <figure class="static-only finale__still"${demoAttr(images.stack)}>${img(images.stack, { sizes: '(max-width: 820px) 100vw, 60vw' })}</figure>
         <h2 class="finale__title" id="finale-t">
           <span class="ln finale__a" style="--l:0"><span>${esc(finale.titleLines[0])}</span></span>
           <span class="ln finale__b" style="--l:1"><span>${esc(finale.titleLines[1])}</span></span>

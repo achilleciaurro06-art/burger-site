@@ -105,7 +105,7 @@ export const philosophy = {
   text:
     'Crediamo che un grande hamburger non sia semplicemente la somma dei suoi ingredienti. È l’equilibrio tra consistenze, sapori e carattere. Ogni dettaglio contribuisce al risultato finale.',
   principles: ['CONSISTENZE', 'SAPORI', 'CARATTERE'],
-  image: images.stack,
+  image: images.photoPhilosophy,
   caption: 'FIG. — L’EQUILIBRIO',
 };
 
@@ -133,7 +133,7 @@ export const products: Product[] = [
     ingredients: ['Brioche bun', 'Fresh lettuce', 'Tomato', 'Cheddar cheese', 'Grilled beef'],
     price: 9, // DEMO
     allergens: [],
-    image: images.original,
+    image: images.photoOriginal,
     size: 'l',
   },
   {
@@ -146,7 +146,7 @@ export const products: Product[] = [
     ingredients: ['Brioche bun', 'Fresh lettuce', 'Tomato', 'Cheddar cheese', 'Grilled beef', 'Crispy bacon', 'BBQ sauce'],
     price: 11, // DEMO
     allergens: [],
-    image: images.plated,
+    image: images.stack, // DEMO (fotogramma dal video)
     size: 'm',
   },
   {
@@ -159,20 +159,20 @@ export const products: Product[] = [
     ingredients: ['Brioche bun', 'Grilled beef ×2', 'Cheddar cheese', 'Tomato', 'Fresh lettuce'],
     price: 13, // DEMO
     allergens: [],
-    image: images.double,
+    image: images.photoDouble,
     size: 's',
   },
   {
     id: 'the-crunch',
     name: 'THE CRUNCH',
     tagline: 'Croccante, deciso.',
-    description: 'Il bacon croccante come protagonista della consistenza.',
+    description: 'Una componente croccante come protagonista della consistenza.',
     longDescription:
-      'Il bacon croccante guida il morso: una nota intensa e decisa che contrasta con la morbidezza della brioche e del formaggio.',
-    ingredients: ['Brioche bun', 'Crispy bacon', 'Grilled beef', 'Cheddar cheese', 'Fresh lettuce'],
+      'Il croccante guida il morso: una nota intensa e decisa che contrasta con la morbidezza della brioche e degli altri ingredienti. Composizione da definire.',
+    ingredients: ['Brioche bun', 'Componente croccante', 'Fresh lettuce', 'Tomato'],
     price: 10, // DEMO
     allergens: [],
-    image: images.bacon,
+    image: images.photoCrunch,
     size: 'l',
   },
 ];
@@ -187,7 +187,7 @@ export const photography = {
     { id: 'bun', caption: 'PANE TOSTATO', image: images.bun, span: 'c' },
     { id: 'bacon', caption: 'BACON CROCCANTE', image: images.bacon, span: 'd' },
     { id: 'sauce', caption: 'SALSA BARBECUE', image: images.sauce, span: 'e' },
-    { id: 'full', caption: 'HAMBURGER COMPLETO', image: images.plated, span: 'f' },
+    { id: 'full', caption: 'HAMBURGER COMPLETO', image: images.stack, span: 'f' },
   ] as PhotoItem[],
 };
 
@@ -196,7 +196,7 @@ export const finalCta = {
   subtitle: 'Non limitarti a guardarlo.',
   primary: 'SCOPRI IL MENU',
   secondary: 'ORDINA ORA',
-  image: images.plated,
+  image: images.photoCta,
 };
 
 export const footerCopy = {

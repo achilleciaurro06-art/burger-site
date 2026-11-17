@@ -11,25 +11,25 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
 export const url = (p: string) => `${base}/${p.replace(/^\//, '')}`;
 
 export const video = {
-  duration: 7.9167,
+  duration: 5.4583,
   /** Frame "core" 9:16: è la base di tutti i calcoli di layout/camera. Nessun layout shift. */
   width: 1080,
   height: 1920,
-  /** Larghezza reale dei file video/poster: core + fasce laterali estese (il piatto nel video esce dai bordi). */
-  fullWidth: 1860,
+  /** Larghezza reale dei file video/poster (= width se il video non ha fasce laterali extra). */
+  fullWidth: 1080,
   /** Ordine di preferenza. Su Safari viene preferito l'MP4 (decodifica hardware, seek più rapido). */
   desktop: [
-    { src: url('videos/burger-scroll.webm'), type: 'video/webm; codecs="vp9"', approxBytes: 3_580_000 },
-    { src: url('videos/burger-scroll.mp4'), type: 'video/mp4', approxBytes: 4_180_000 },
+    { src: url('videos/burger-scroll.webm'), type: 'video/webm; codecs="vp9"', approxBytes: 2_680_000 },
+    { src: url('videos/burger-scroll.mp4'), type: 'video/mp4', approxBytes: 3_070_000 },
   ] as VideoSource[],
   /** Smartphone / viewport strette: 720×1280, più leggero. */
   narrow: [
-    { src: url('videos/burger-scroll-720.webm'), type: 'video/webm; codecs="vp9"', approxBytes: 2_190_000 },
-    { src: url('videos/burger-scroll-720.mp4'), type: 'video/mp4', approxBytes: 2_170_000 },
+    { src: url('videos/burger-scroll-720.webm'), type: 'video/webm; codecs="vp9"', approxBytes: 1_650_000 },
+    { src: url('videos/burger-scroll-720.mp4'), type: 'video/mp4', approxBytes: 1_600_000 },
   ] as VideoSource[],
   poster: {
     src: url('images/poster-start.webp'),
-    width: 1860,
+    width: 1080,
     height: 1920,
     alt: '',
   } as ImageAsset,
@@ -50,7 +50,23 @@ const demo = (
   ...extra,
 });
 
+/** Fotografie reali fornite dal brand (nessuna etichetta demo). */
+const photo = (name: string, width: number, height: number, widthSm: number, alt: string, position?: string): ImageAsset => ({
+  src: url(`images/photo-${name}.webp`),
+  srcSm: url(`images/photo-${name}-sm.webp`),
+  widthSm,
+  width,
+  height,
+  alt,
+  position,
+});
+
 export const images = {
+  photoOriginal: photo('original', 1600, 1064, 800, 'Hamburger con pane al sesamo, lattuga, pomodoro, cipolla e formaggio su tavolo di legno', '64% 50%'),
+  photoDouble: photo('double', 900, 1600, 560, 'Hamburger doppio con formaggio fuso e cipolla rossa, patatine in primo piano'),
+  photoCrunch: photo('crunch', 1600, 1068, 800, 'Hamburger con cotoletta croccante, uovo e pomodoro con patatine e salsa su tagliere', '30% 50%'),
+  photoPhilosophy: photo('philosophy', 1600, 1066, 800, 'Hamburger doppio con formaggio fuso accanto a patatine rustiche', '86% 50%'),
+  photoCta: photo('cta', 1800, 1200, 900, 'Hamburger con pomodoro e cipolla rossa accanto a patatine in un contenitore d\u2019acciaio', '68% 50%'),
   heroStill: demo('hero-still', 880, 800, 'Hamburger intero su sfondo nero', { srcSm: url('images/hero-still-sm.webp'), widthSm: 520 }),
   bun: demo('ing-bun', 520, 390, 'Macro del pane brioche dorato con semi di sesamo'),
   lettuce: demo('ing-lettuce', 520, 390, 'Macro delle foglie di lattuga fresca'),
@@ -59,9 +75,5 @@ export const images = {
   beef: demo('ing-beef', 520, 390, 'Macro del burger di manzo grigliato'),
   bacon: demo('ing-bacon', 640, 480, 'Macro del bacon croccante sul pane tostato'),
   sauce: demo('ing-sauce', 640, 480, 'Macro della salsa barbecue che cola sull’hamburger'),
-  original: demo('burger-original', 800, 800, 'Hamburger classico completo', { srcSm: url('images/burger-original-sm.webp'), widthSm: 480 }),
-  plated: demo('burger-plated', 1400, 722, 'Hamburger con salsa barbecue su un piatto bianco', { srcSm: url('images/burger-plated-sm.webp'), widthSm: 700 }),
-  double: demo('burger-double', 780, 700, 'Formaggio, carne e bacon', { srcSm: url('images/burger-double-sm.webp'), widthSm: 480 }),
-  pour: demo('burger-pour', 700, 700, 'Salsa barbecue che cola sul pane', { srcSm: url('images/burger-pour-sm.webp'), widthSm: 440 }),
   stack: demo('burger-stack', 820, 900, 'Hamburger ricomposto con salsa barbecue', { srcSm: url('images/burger-stack-sm.webp'), widthSm: 480 }),
 };
