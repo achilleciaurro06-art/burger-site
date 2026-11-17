@@ -31,8 +31,8 @@ export const renderExperience = (): string => `
 <section class="exp" id="experience" style="--exp-vh:${TOTAL_VH}" aria-label="L’hamburger, ingrediente per ingrediente" data-experience>
   <span class="anchor" id="ingredienti" style="--at:${chapterStartVh('bun') + 14}" aria-hidden="true"></span>
   <div class="exp__stage" data-stage>
-    <div class="exp__cam" data-cam style="aspect-ratio:${video.width}/${video.height}">
-      <img class="exp__poster" data-poster src="${video.poster.src}" width="${video.width}" height="${video.height}" alt="" fetchpriority="high" decoding="async">
+    <div class="exp__cam" data-cam style="--ext:${(((video.fullWidth - video.width) / 2 / video.width) * 100).toFixed(3)}%">
+      <img class="exp__poster" data-poster src="${video.poster.src}" width="${video.fullWidth}" height="${video.height}" alt="" fetchpriority="high" decoding="async">
       <video class="exp__video" data-video muted playsinline preload="auto" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback></video>
     </div>
 

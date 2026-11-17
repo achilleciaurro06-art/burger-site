@@ -60,12 +60,13 @@ export function initExperience(): void {
     return { s: (narrow ? c.sm : c.s) * (narrow ? 1 : wideK), fy: c.fy, ay: narrow ? c.aym : c.ay };
   };
 
-  const setLayer = (el: HTMLElement, vin: number, vout: number): void => {
-    const key = `${vin.toFixed(3)}|${vout.toFixed(3)}`;
+  const setLayer = (el: HTMLElement, vin: number, vout: number, u: number): void => {
+    const key = `${vin.toFixed(3)}|${vout.toFixed(3)}|${u.toFixed(3)}`;
     if (layerCache.get(el) === key) return;
     layerCache.set(el, key);
     el.style.setProperty('--in', vin.toFixed(3));
     el.style.setProperty('--out', vout.toFixed(3));
+    el.style.setProperty('--u', u.toFixed(3)); // avanzamento locale: movimento continuo del testo mentre si scorre
   };
 
   const render = (p: number): void => {
@@ -99,7 +100,7 @@ export function initExperience(): void {
       if (!el) return;
       const uj = j < i ? 1 : j > i ? 0 : u;
       // Capitoli futuri: livello completamente nascosto (anche per screen reader / hit-test).
-      setLayer(el, range(uj, c.in[0], c.in[1]), j > i ? 1 : c.out ? range(uj, c.out[0], c.out[1]) : 0);
+      setLayer(el, range(uj, c.in[0], c.in[1]), j > i ? 1 : c.out ? range(uj, c.out[0], c.out[1]) : 0, uj);
     });
 
     // Indicatori

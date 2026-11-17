@@ -81,7 +81,7 @@
   transform-origin: 50% 50%; will-change: transform; backface-visibility: hidden;
 }
 /* Sfumatura ai bordi del frame: il tavolo/piatto del video si fonde con il nero della pagina. */
-[data-exp='scrub'] .exp__cam::before, [data-exp='scrub'] .exp__cam::after { content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+[data-exp='scrub'] .exp__cam::before, [data-exp='scrub'] .exp__cam::after { content: ''; position: absolute; inset: 0 calc(var(--ext, 0%) * -1); z-index: 2; pointer-events: none; }
 /* --plate (0→1) cresce quando compare il piatto: il bordo bianco si dissolve nel nero. */
 [data-exp='scrub'] .exp__cam::before {
   background:
@@ -90,7 +90,9 @@
     linear-gradient(90deg, #000 0, rgba(0, 0, 0, 0) 9%, rgba(0, 0, 0, 0) 91%, #000 100%);
 }
 [data-exp='scrub'] .exp__cam::after { background: linear-gradient(180deg, #000 0, rgba(0, 0, 0, 0) 6%, rgba(0, 0, 0, 0) calc(88% - var(--plate, 0) * 8%), #000 100%); }
-.exp__poster, .exp__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: transparent; }
+/* Poster e video sono più larghi del frame "core" 9:16 (--ext per lato): il piatto del video esce dai bordi,
+   le fasce estese lo completano e sfumano nel nero. */
+.exp__poster, .exp__video { position: absolute; top: 0; height: 100%; left: calc(var(--ext, 0%) * -1); width: calc(100% + var(--ext, 0%) * 2); object-fit: contain; max-width: none; background: transparent; }
 .exp__video { z-index: 1; }
 
 [data-exp='scrub'] .exp__layers { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
@@ -163,6 +165,12 @@
 [data-exp='scrub'] .layer--ing[data-side='left'] .ing__line::after { right: 0; }
 [data-exp='scrub'] .layer--ing[data-side='right'] .ing__line::after { left: 0; }
 [data-exp='scrub'] .ing__tags li { transition: none; }
+/* Movimento continuo durante la lettura (--u = avanzamento locale del capitolo): niente schermate "ferme". */
+[data-exp='scrub'] .layer { --u: 0.5; }
+[data-exp='scrub'] .ing__text { translate: 0 calc((0.5 - var(--u)) * 64px); }
+[data-exp='scrub'] .ing__photo { translate: 0 calc((var(--u) - 0.5) * -96px); }
+[data-exp='scrub'] .ing__ghost { translate: calc((0.5 - var(--u)) * 7vw) 0; }
+[data-exp='scrub'] .sauce__title { translate: 0 calc((0.5 - var(--u)) * 36px); }
 
 /* MOMENTO SALSA */
 [data-exp='scrub'] .exp__stage[data-mood='sauce'] { --accent: var(--bbq); }
@@ -176,9 +184,9 @@
 
 /* FINALE */
 [data-exp='scrub'] .finale__title { position: absolute; inset: 0; font-size: min(10.4vh, 6.1vw); pointer-events: none; }
-[data-exp='scrub'] .finale__a { position: absolute; left: var(--gut); top: 27%; width: min(27vw, 520px); }
-[data-exp='scrub'] .finale__b { position: absolute; right: var(--gut); bottom: calc(13vh + 4.6rem); width: min(29vw, 560px); text-align: right; }
-[data-exp='scrub'] .finale__sub { position: absolute; right: var(--gut); bottom: 13vh; max-width: 20ch; text-align: right; font-size: clamp(18px, 1.6vw, 26px); color: var(--warm); }
+[data-exp='scrub'] .finale__a { position: absolute; left: var(--gut); top: 15%; width: min(27vw, 520px); }
+[data-exp='scrub'] .finale__b { position: absolute; right: var(--gut); top: 15%; width: min(29vw, 560px); text-align: right; }
+[data-exp='scrub'] .finale__sub { position: absolute; right: var(--gut); top: calc(15% + min(19.4vh, 11.4vw) + 1.4rem); max-width: 20ch; text-align: right; font-size: clamp(18px, 1.6vw, 26px); color: var(--warm); }
 
 /* RAIL + BARRA DI AVANZAMENTO + LOADER */
 [data-exp='scrub'] .rail {
@@ -225,6 +233,7 @@
   [data-exp='scrub'] .ing__tags { gap: 0 16px; }
   [data-exp='scrub'] .ing__tags li { padding-top: 8px; min-width: 0; font-size: 9.5px; }
   [data-exp='scrub'] .ing__photo, [data-exp='scrub'] .ing__line { display: none; }
+  [data-exp='scrub'] .ing__text { translate: none; }
   [data-exp='scrub'] .ing__ghost { top: 36%; left: auto; right: -2vw; font-size: 62vw; }
   [data-exp='scrub'] .layer--ing[data-side='right'] .ing__ghost { right: -2vw; }
 
@@ -234,8 +243,8 @@
 
   [data-exp='scrub'] .finale__title { font-size: min(12.4vw, 7svh); }
   [data-exp='scrub'] .finale__a { left: var(--gut); right: var(--gut); top: auto; bottom: calc(4.4rem + 14svh); width: auto; }
-  [data-exp='scrub'] .finale__b { left: var(--gut); right: var(--gut); bottom: calc(3.2rem + 8svh); width: auto; text-align: left; }
-  [data-exp='scrub'] .finale__sub { left: var(--gut); right: var(--gut); bottom: 36px; max-width: none; text-align: left; font-size: 19px; }
+  [data-exp='scrub'] .finale__b { left: var(--gut); right: var(--gut); top: auto; bottom: calc(3.2rem + 8svh); width: auto; text-align: left; }
+  [data-exp='scrub'] .finale__sub { left: var(--gut); right: var(--gut); top: auto; bottom: 36px; max-width: none; text-align: left; font-size: 19px; }
   [data-exp='scrub'] .rail { bottom: 14px; }
   [data-exp='scrub'] .rail li { width: 30px; }
   [data-exp='scrub'] .exp__loader { top: calc(var(--hdr-h) + 6px); }

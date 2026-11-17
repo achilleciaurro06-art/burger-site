@@ -12,9 +12,11 @@ export const url = (p: string) => `${base}/${p.replace(/^\//, '')}`;
 
 export const video = {
   duration: 7.9167,
-  /** Dimensioni del frame (9:16). Usate per l'aspect-ratio: nessun layout shift. */
+  /** Frame "core" 9:16: è la base di tutti i calcoli di layout/camera. Nessun layout shift. */
   width: 1080,
   height: 1920,
+  /** Larghezza reale dei file video/poster: core + fasce laterali estese (il piatto nel video esce dai bordi). */
+  fullWidth: 1860,
   /** Ordine di preferenza. Su Safari viene preferito l'MP4 (decodifica hardware, seek più rapido). */
   desktop: [
     { src: url('videos/burger-scroll.webm'), type: 'video/webm; codecs="vp9"', approxBytes: 3_580_000 },
@@ -27,7 +29,7 @@ export const video = {
   ] as VideoSource[],
   poster: {
     src: url('images/poster-start.webp'),
-    width: 1080,
+    width: 1860,
     height: 1920,
     alt: '',
   } as ImageAsset,
@@ -58,7 +60,7 @@ export const images = {
   bacon: demo('ing-bacon', 640, 480, 'Macro del bacon croccante sul pane tostato'),
   sauce: demo('ing-sauce', 640, 480, 'Macro della salsa barbecue che cola sull’hamburger'),
   original: demo('burger-original', 800, 800, 'Hamburger classico completo', { srcSm: url('images/burger-original-sm.webp'), widthSm: 480 }),
-  plated: demo('burger-plated', 1080, 960, 'Hamburger con salsa barbecue su un piatto bianco', { srcSm: url('images/burger-plated-sm.webp'), widthSm: 640 }),
+  plated: demo('burger-plated', 1400, 722, 'Hamburger con salsa barbecue su un piatto bianco', { srcSm: url('images/burger-plated-sm.webp'), widthSm: 700 }),
   double: demo('burger-double', 780, 700, 'Formaggio, carne e bacon', { srcSm: url('images/burger-double-sm.webp'), widthSm: 480 }),
   pour: demo('burger-pour', 700, 700, 'Salsa barbecue che cola sul pane', { srcSm: url('images/burger-pour-sm.webp'), widthSm: 440 }),
   stack: demo('burger-stack', 820, 900, 'Hamburger ricomposto con salsa barbecue', { srcSm: url('images/burger-stack-sm.webp'), widthSm: 480 }),
