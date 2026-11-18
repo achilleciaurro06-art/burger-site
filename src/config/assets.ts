@@ -11,7 +11,7 @@ const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
 export const url = (p: string) => `${base}/${p.replace(/^\//, '')}`;
 
 export const video = {
-  duration: 5.4583,
+  duration: 1.9583,
   /** Frame "core" 9:16: è la base di tutti i calcoli di layout/camera. Nessun layout shift. */
   width: 1080,
   height: 1920,
@@ -19,13 +19,13 @@ export const video = {
   fullWidth: 1080,
   /** Ordine di preferenza. Su Safari viene preferito l'MP4 (decodifica hardware, seek più rapido). */
   desktop: [
-    { src: url('videos/burger-scroll.webm'), type: 'video/webm; codecs="vp9"', approxBytes: 2_680_000 },
-    { src: url('videos/burger-scroll.mp4'), type: 'video/mp4', approxBytes: 3_070_000 },
+    { src: url('videos/burger-scroll.webm'), type: 'video/webm; codecs="vp9"', approxBytes: 880_000 },
+    { src: url('videos/burger-scroll.mp4'), type: 'video/mp4', approxBytes: 970_000 },
   ] as VideoSource[],
   /** Smartphone / viewport strette: 720×1280, più leggero. */
   narrow: [
-    { src: url('videos/burger-scroll-720.webm'), type: 'video/webm; codecs="vp9"', approxBytes: 1_650_000 },
-    { src: url('videos/burger-scroll-720.mp4'), type: 'video/mp4', approxBytes: 1_600_000 },
+    { src: url('videos/burger-scroll-720.webm'), type: 'video/webm; codecs="vp9"', approxBytes: 520_000 },
+    { src: url('videos/burger-scroll-720.mp4'), type: 'video/mp4', approxBytes: 490_000 },
   ] as VideoSource[],
   poster: {
     src: url('images/poster-start.webp'),

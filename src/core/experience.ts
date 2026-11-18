@@ -91,8 +91,6 @@ export function initExperience(): void {
     videoT = lerp(prev.t, ch.to.t, u);
     if (ready && !video.seeking && Math.abs(video.currentTime - videoT) > 1 / 50) video.currentTime = videoT;
 
-    cam.style.setProperty('--plate', range(videoT, 4.7, 5.0).toFixed(3));
-
     // Livelli editoriali (entrata/uscita legate allo scroll)
     CHAPTERS.forEach((c, j) => {
       if (!c.layer) return;
@@ -107,7 +105,7 @@ export function initExperience(): void {
     const ingIdx = ingChapters[i] ? i - firstIng : -1;
     const railOn = ingIdx >= 0 || (i === firstIng - 1 && u > 0.6);
     stage.dataset.rail = railOn ? 'on' : 'off';
-    stage.dataset.mood = ch.id === 'sauce' || ch.id === 'sauce-moment' ? 'sauce' : 'base';
+    stage.dataset.mood = ch.id === 'sauce' ? 'sauce' : 'base';
     railItems.forEach((it, k) => it.setAttribute('aria-current', String(k === ingIdx)));
     bar.style.transform = `scaleX(${p.toFixed(4)})`;
   };

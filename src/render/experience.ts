@@ -1,4 +1,4 @@
-import { hero, ingredients, ingredientsIntro, sauceMoment, finale } from '../config/content';
+import { hero, ingredients, ingredientsIntro, finale } from '../config/content';
 import { images, video } from '../config/assets';
 import { TOTAL_VH, chapterStartVh } from '../config/timeline';
 import { demoAttr, esc, img, lines, pad } from './helpers';
@@ -49,14 +49,8 @@ export const renderExperience = (): string => `
 
       ${ingredients.map(renderIngredient).join('')}
 
-      <div class="layer layer--sauce" data-layer="sauce-moment" aria-labelledby="sauce-t">
-        <h2 class="sauce__title" id="sauce-t">${sauceMoment.titleLines.map((l, i) => `<span class="ln" style="--l:${i}"><span>${esc(l)}</span></span>`).join('')}</h2>
-        <p class="sauce__text st" style="--i:3">${esc(sauceMoment.text)}</p>
-        <span class="sauce__rule" aria-hidden="true"></span>
-      </div>
-
       <div class="layer layer--finale" data-layer="finale" aria-labelledby="finale-t">
-        <figure class="static-only finale__still"${demoAttr(images.stack)}>${img(images.stack, { sizes: '(max-width: 820px) 100vw, 60vw' })}</figure>
+        <figure class="static-only finale__still"${demoAttr(images.heroStill)}>${img(images.heroStill, { sizes: '(max-width: 820px) 80vw, 40vw' })}</figure>
         <h2 class="finale__title" id="finale-t">
           <span class="ln finale__a" style="--l:0"><span>${esc(finale.titleLines[0])}</span></span>
           <span class="ln finale__b" style="--l:1"><span>${esc(finale.titleLines[1])}</span></span>

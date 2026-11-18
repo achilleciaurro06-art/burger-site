@@ -6,7 +6,7 @@
  *   npm run media -- path/al/video.mp4  (sorgente diversa)
  *
  * Output:
- *   public/videos/burger-scroll.{webm,mp4}       (desktop, 1080x1920, fino a 5.45 s)
+ *   public/videos/burger-scroll.{webm,mp4}       (desktop, 1080x1920, 0–1.95 s)
  *   public/videos/burger-scroll-720.{webm,mp4}   (mobile / connessioni lente, 720x1280)
  *   public/images/*.webp                         (poster + fotogrammi DEMO + foto reali da assets-src/photos)
  *
@@ -28,8 +28,9 @@ mkdirSync('public/images', { recursive: true });
 
 const ff = (...args) => execFileSync('ffmpeg', ['-v', 'error', '-y', ...args], { stdio: 'inherit' });
 
-// Il video si ferma all'hamburger ricomposto: il piatto che entra dal basso non viene usato.
-const VIDEO_END = 5.45;
+// Il video usa solo la parte "pulita" (hamburger che si apre, ingredienti sospesi): la salsa compare dopo 2.0 s.
+// La ricomposizione si ottiene scorrendo la stessa apertura al contrario (vedi src/config/timeline.ts).
+const VIDEO_END = 1.95;
 
 // ---------- VIDEO ----------
 for (const [suffix, width] of [['', 1080], ['-720', 720]]) {

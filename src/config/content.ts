@@ -89,11 +89,6 @@ export const ingredients: Ingredient[] = [
   },
 ];
 
-export const sauceMoment = {
-  titleLines: ['THE SECRET', 'IS IN THE', 'SAUCE.'],
-  text: 'Non è solo una salsa. È il dettaglio che unisce ogni ingrediente.',
-};
-
 export const finale = {
   titleLines: ['ALL TOGETHER.', 'ONE EXPERIENCE.'] as [string, string],
   subtitle: 'Il risultato di ogni singolo ingrediente.',

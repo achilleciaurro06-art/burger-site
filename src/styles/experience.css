@@ -41,11 +41,6 @@
 .ing__photo figcaption, .phil__photo figcaption { margin-top: 10px; font-size: 10px; letter-spacing: 0.22em; font-weight: 600; color: var(--mute); }
 .ing__line { display: none; }
 
-.layer--sauce { padding-top: clamp(96px, 14vw, 200px); padding-bottom: clamp(96px, 14vw, 200px); display: grid; gap: 40px; }
-.sauce__title { font-size: clamp(56px, 14vw, 200px); }
-.sauce__title .ln:last-child { color: var(--caramel); }
-.sauce__text { font-family: var(--f-serif); font-style: italic; font-size: clamp(26px, 3.4vw, 44px); line-height: 1.12; max-width: 24ch; }
-.sauce__rule { width: 64px; height: 1px; background: var(--bbq); }
 
 .layer--finale { display: grid; gap: 28px; justify-items: start; padding-bottom: clamp(96px, 14vw, 180px); }
 .finale__still { width: min(100%, 820px); justify-self: center; }
@@ -80,10 +75,10 @@
   margin-left: calc(var(--fw) / -2); margin-top: calc(var(--fw) * 16 / 18 * -1);
   transform-origin: 50% 50%; will-change: transform; backface-visibility: hidden;
 }
-/* Sfumatura ai bordi del frame. --plate (0→1) alla fine del video: il bordo inferiore diventa nero pieno e nasconde il piatto che entra. */
+/* Sfumatura ai bordi del frame: si fonde con il nero della pagina. */
 [data-exp='scrub'] .exp__cam::before, [data-exp='scrub'] .exp__cam::after { content: ''; position: absolute; inset: 0 calc(var(--ext, 0%) * -1); z-index: 2; pointer-events: none; }
 [data-exp='scrub'] .exp__cam::before { background: linear-gradient(90deg, #000 0, rgba(0, 0, 0, 0) 9%, rgba(0, 0, 0, 0) 91%, #000 100%); }
-[data-exp='scrub'] .exp__cam::after { background: linear-gradient(180deg, #000 0, rgba(0, 0, 0, 0) 6%, rgba(0, 0, 0, 0) calc(88% - var(--plate, 0) * 14%), #000 calc(100% - var(--plate, 0) * 20.5%)); }
+[data-exp='scrub'] .exp__cam::after { background: linear-gradient(180deg, #000 0, rgba(0, 0, 0, 0) 6%, rgba(0, 0, 0, 0) 88%, #000 100%); }
 /* Poster e video possono essere più larghi del frame "core" 9:16 (--ext per lato, da video.fullWidth in assets.ts). */
 .exp__poster, .exp__video { position: absolute; top: 0; height: 100%; left: calc(var(--ext, 0%) * -1); width: calc(100% + var(--ext, 0%) * 2); object-fit: contain; max-width: none; background: transparent; }
 .exp__video { z-index: 1; }
@@ -163,17 +158,6 @@
 [data-exp='scrub'] .ing__text { translate: 0 calc((0.5 - var(--u)) * 64px); }
 [data-exp='scrub'] .ing__photo { translate: 0 calc((var(--u) - 0.5) * -96px); }
 [data-exp='scrub'] .ing__ghost { translate: calc((0.5 - var(--u)) * 7vw) 0; }
-[data-exp='scrub'] .sauce__title { translate: 0 calc((0.5 - var(--u)) * 36px); }
-
-/* MOMENTO SALSA */
-[data-exp='scrub'] .exp__stage[data-mood='sauce'] { --accent: var(--bbq); }
-[data-exp='scrub'] .sauce__title { position: absolute; left: var(--gut); bottom: 11vh; font-size: min(11vh, 7.2vw); }
-[data-exp='scrub'] .sauce__title .ln:last-child { color: var(--caramel); }
-[data-exp='scrub'] .sauce__text { position: absolute; right: var(--gut); top: 50%; width: min(21vw, 360px); font-size: clamp(22px, 2.2vw, 40px); transform: translate3d(0, calc(-50% + (1 - var(--k)) * 30px), 0); }
-[data-exp='scrub'] .sauce__rule {
-  position: absolute; right: calc(var(--gut) + min(21vw, 360px) + 1.4vw); top: 50%; width: 1px; height: 26vh; background: var(--bbq);
-  transform: translateY(-50%) scaleY(clamp(0, calc(var(--in) * 2.4 - 0.5), 1)); transform-origin: top;
-}
 
 /* FINALE */
 [data-exp='scrub'] .finale__title { position: absolute; inset: 0; font-size: min(9.6vh, 5.6vw); pointer-events: none; }
@@ -230,9 +214,6 @@
   [data-exp='scrub'] .ing__ghost { top: 36%; left: auto; right: -2vw; font-size: 62vw; }
   [data-exp='scrub'] .layer--ing[data-side='right'] .ing__ghost { right: -2vw; }
 
-  [data-exp='scrub'] .sauce__title { bottom: 156px; font-size: min(15.5vw, 9svh); }
-  [data-exp='scrub'] .sauce__text { right: var(--gut); left: var(--gut); top: auto; bottom: 52px; width: auto; font-size: 19px; transform: translate3d(0, calc((1 - var(--k)) * 24px), 0); }
-  [data-exp='scrub'] .sauce__rule { display: none; }
 
   [data-exp='scrub'] .finale__title { font-size: min(12.4vw, 7svh); }
   [data-exp='scrub'] .finale__a { left: var(--gut); right: var(--gut); top: auto; bottom: calc(4.4rem + 14svh); width: auto; }
@@ -246,3 +227,6 @@
 @media (min-width: 900px) {
   .layer--hero .hero__sub { grid-column: 1; grid-row: 3; align-self: end; margin-bottom: 2vw; }
 }
+
+/* Scheda 07 (salsa): l'accento (linee, barra, rail) diventa rosso BBQ. */
+[data-exp='scrub'] .exp__stage[data-mood='sauce'] { --accent: var(--bbq); }
